@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱心网页</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            transform: rotate(45deg);
+            animation: fall 5s linear infinite;
+        }
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+        }
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+        .heart::after {
+            left: 10px;
+            top: 0;
+        }
+        @keyframes fall {
+            0% {
+                top: -20px;
+            }
+            100% {
+                top: 100%;
+            }
+        }
+        @keyframes sway {
+            0%, 100% {
+                left: 0;
+            }
+            50% {
+                left: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function createHearts() {
+            const container = document.body;
+            for (let i = 0; i < 100; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.style.left = `${Math.random() * 100}vw`;
+                heart.style.animationDelay = `${Math.random() * 5}s`;
+                container.appendChild(heart);
+            }
+        }
+        createHearts();
+    </script>
+</body>
+</html>
